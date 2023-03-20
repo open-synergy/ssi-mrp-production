@@ -1,13 +1,13 @@
 # Copyright 2023 OpenSynergy Indonesia
 # Copyright 2023 PT. Simetri Sinergi Indonesia
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     date_backdating = fields.Datetime(
         string="Actual Movement Date",
@@ -24,7 +24,9 @@ class MrpProduction(models.Model):
 
     def button_mark_done(self):
         for rec in self:
-            rec.move_finished_ids.write({
-                'date_backdating': rec.date_backdating,
-            })
+            rec.move_finished_ids.write(
+                {
+                    "date_backdating": rec.date_backdating,
+                }
+            )
         return super(MrpProduction, self).button_mark_done()
