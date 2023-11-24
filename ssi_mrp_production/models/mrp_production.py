@@ -9,6 +9,15 @@ from odoo.exceptions import UserError
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
+    type_id = fields.Many2one(
+        comodel_name="mrp_production_type",
+        string="Type",
+        required=True,
+        readonly=True,
+        states={
+            "draft": [("readonly", False)],
+        },
+    )
     date_backdating = fields.Datetime(
         string="Actual Movement Date",
     )
