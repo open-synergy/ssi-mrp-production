@@ -11,6 +11,7 @@
     "depends": [
         "mrp",
         "stock_move_backdating",
+        "ssi_master_data_mixin",
     ],
     "data": [
         "security/ir_module_category_data.xml",
