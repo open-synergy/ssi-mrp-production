@@ -83,6 +83,17 @@
             <xpath expr="//field[@name='user_id']" position="before">
                 <field name="date_backdating" />
             </xpath>
+            <xpath expr="//page[@name='miscellaneous']" position="after">
+                <page name="valuation" string="Valuation">
+                    <group>
+                        <group>
+                            <field name="stock_valuation_id"/>
+                            <field name="unit_cost"/>
+                            <field name="value"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
         </data>
         <xpath expr="//page[@name='components']" position="after">
             <page name="policy" string="Policies" groups="base.group_system">

@@ -17,6 +17,27 @@ class MrpProduction(models.Model):
         _super = super(MrpProduction, self)
         _super._compute_policy()
 
+    @api.depends(
+        'state',
+        'move_finished_ids.stock_valuation_layer_ids',
+    )
+    def _compute_stock_valuation_id(self):
+        for rec in self:
+            stock_valuation_id = self.env['stock.valuation.layer'].search([
+                ('stock_move_id', 'in', rec.move_finished_ids.ids)
+            ], limit=1)
+            rec.stock_valuation_id = stock_valuation_id.id
+
+    @api.depends('stock_valuation_id.unit_cost')
+    def _compute_unit_cost(self):
+        for rec in self:
+            rec.unit_cost = rec.stock_valuation_id.unit_cost
+
+    @api.depends('stock_valuation_id.value')
+    def _compute_value(self):
+        for rec in self:
+            rec.value = rec.stock_valuation_id.value
+
     type_id = fields.Many2one(
         comodel_name="mrp_production_type",
         string="Type",
@@ -93,6 +114,24 @@ class MrpProduction(models.Model):
         string="Can Unbuild",
         compute="_compute_policy",
         compute_sudo=True,
+    stock_valuation_id = fields.Many2one(
+        comodel_name='stock.valuation.layer',
+        string='Stock Valuation',
+        compute='_compute_stock_valuation_id',
+        compute_sudo=True,
+        store=True
+    )
+    unit_cost = fields.Float(
+        string='Unit Value',
+        compute='_compute_unit_cost',
+        compute_sudo=True,
+        store=True
+    )
+    value = fields.Float(
+        string='Total Value',
+        compute='_compute_value',
+        compute_sudo=True,
+        store=True
     )
 
     @api.constrains("date_backdating")

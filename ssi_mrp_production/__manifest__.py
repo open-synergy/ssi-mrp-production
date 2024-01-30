@@ -10,9 +10,11 @@
     "website": "https://simetri-sinergi.id",
     "depends": [
         "mrp",
+        "mrp_account",
         "stock_move_backdating",
         "ssi_master_data_mixin",
         "ssi_policy_mixin",
+        "ssi_stock_account",
     ],
     "data": [
         "security/ir_module_category_data.xml",
