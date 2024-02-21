@@ -18,7 +18,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[ssi_mrp_production](ssi_mrp_production/) | 14.0.2.1.0 |  | MRP Production
+[ssi_mrp_production](ssi_mrp_production/) | 14.0.2.2.0 |  | MRP Production
 
 [//]: # (end addons)
 
