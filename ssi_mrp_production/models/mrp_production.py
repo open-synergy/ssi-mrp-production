@@ -114,6 +114,7 @@ class MrpProduction(models.Model):
         string="Can Unbuild",
         compute="_compute_policy",
         compute_sudo=True,
+    )
     stock_valuation_id = fields.Many2one(
         comodel_name="stock.valuation.layer",
         string="Stock Valuation",

@@ -136,6 +136,10 @@
             <xpath expr="//field[@name='name']" position="after">
                 <field name="type_id" />
             </xpath>
+            <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="unit_cost" />
+                <field name="value" />
+            </xpath>
         </data>
     </field>
 </record>
