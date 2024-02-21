@@ -84,6 +84,11 @@ class MrpProduction(models.Model):
         compute="_compute_policy",
         compute_sudo=True,
     )
+    cancel_confirm_ok = fields.Boolean(
+        string="Can Cancel (Confirmation)",
+        compute="_compute_policy",
+        compute_sudo=True,
+    )
     unbuild_ok = fields.Boolean(
         string="Can Unbuild",
         compute="_compute_policy",
@@ -123,6 +128,7 @@ class MrpProduction(models.Model):
             "lock_ok",
             "unlock_ok",
             "cancel_ok",
+            "cancel_confirm_ok",
             "unbuild_ok",
         ]
         res += policy_field

@@ -23,7 +23,7 @@
     <field name="restrict_state" eval="1" />
     <field
                 name="state_ids"
-                search="[('field_id.model_id.model','=','mrp.production'),('value','not in',['draft', 'cancel', 'done', 'to_close'])]"
+                search="[('field_id.model_id.model','=','mrp.production'),('value','in',['confirmed', 'progress'])]"
             />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
@@ -41,7 +41,7 @@
                 search="[('model_id.model','=','mrp.production'),('name','=','mark_done_ok')]"
             />
     <field name="restrict_state" eval="0" />
-    <field name="state_ids" eval="[(6,0,[])]"/>
+    <field name="state_ids" eval="[(6,0,[])]" />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
     <field
@@ -49,7 +49,9 @@
                 eval="[(6,0,[ref('ssi_mrp_production.manufacture_order_user_group')])]"
             />
     <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = (document.state in ('confirmed', 'progress') and document.qty_producing) or document.state == 'to_close'</field>
+    <field
+                name="additional_python_code"
+            >result = (document.state in ('confirmed', 'progress') and document.qty_producing) or document.state == 'to_close'</field>
 </record>
 <record id="policy_template_mrp_production_confirm" model="policy.template_detail">
     <field name="template_id" ref="policy_template_mrp_production" />
@@ -89,7 +91,9 @@
                 eval="[(6,0,[ref('ssi_mrp_production.manufacture_order_user_group')])]"
             />
     <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = document.workorder_ids and not document.is_planned</field>
+    <field
+                name="additional_python_code"
+            >result = document.workorder_ids and not document.is_planned</field>
 </record>
 <record id="policy_template_mrp_production_unplan" model="policy.template_detail">
     <field name="template_id" ref="policy_template_mrp_production" />
@@ -98,7 +102,7 @@
                 search="[('model_id.model','=','mrp.production'),('name','=','unplan_ok')]"
             />
     <field name="restrict_state" eval="0" />
-    <field name="state_ids" eval="[(6,0,[])]"/>
+    <field name="state_ids" eval="[(6,0,[])]" />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
     <field
@@ -108,7 +112,10 @@
     <field name="restrict_additional" eval="1" />
     <field name="additional_python_code">result = document.is_planned</field>
 </record>
-<record id="policy_template_mrp_production_check_availability" model="policy.template_detail">
+<record
+            id="policy_template_mrp_production_check_availability"
+            model="policy.template_detail"
+        >
     <field name="template_id" ref="policy_template_mrp_production" />
     <field
                 name="field_id"
@@ -117,7 +124,7 @@
     <field name="restrict_state" eval="1" />
     <field
                 name="state_ids"
-                search="[('field_id.model_id.model','=','mrp.production'),('value','not in',['draft', 'done', 'cancel'])]"
+                search="[('field_id.model_id.model','=','mrp.production'),('value','in',['confirmed', 'progress', 'to_close'])]"
             />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
@@ -135,7 +142,7 @@
                 search="[('model_id.model','=','mrp.production'),('name','=','unreserve_ok')]"
             />
     <field name="restrict_state" eval="0" />
-    <field name="state_ids" eval="[(6,0,[])]"/>
+    <field name="state_ids" eval="[(6,0,[])]" />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
     <field
@@ -154,7 +161,7 @@
     <field name="restrict_state" eval="1" />
     <field
                 name="state_ids"
-                search="[('field_id.model_id.model','=','mrp.production'),('value','not in',['cancel', 'draft'])]"
+                search="[('field_id.model_id.model','=','mrp.production'),('value','in',['confirmed', 'progress', 'to_close', 'done'])]"
             />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
@@ -172,7 +179,7 @@
                 search="[('model_id.model','=','mrp.production'),('name','=','lock_ok')]"
             />
     <field name="restrict_state" eval="0" />
-    <field name="state_ids" eval="[(6,0,[])]"/>
+    <field name="state_ids" eval="[(6,0,[])]" />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
     <field
@@ -180,7 +187,9 @@
                 eval="[(6,0,[ref('ssi_mrp_production.manufacture_order_user_group')])]"
             />
     <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = document.show_lock and not document.is_locked</field>
+    <field
+                name="additional_python_code"
+            >result = document.show_lock and not document.is_locked</field>
 </record>
 <record id="policy_template_mrp_production_unlock" model="policy.template_detail">
     <field name="template_id" ref="policy_template_mrp_production" />
@@ -189,7 +198,7 @@
                 search="[('model_id.model','=','mrp.production'),('name','=','unlock_ok')]"
             />
     <field name="restrict_state" eval="0" />
-    <field name="state_ids" eval="[(6,0,[])]"/>
+    <field name="state_ids" eval="[(6,0,[])]" />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
     <field
@@ -197,7 +206,9 @@
                 eval="[(6,0,[ref('ssi_mrp_production.manufacture_order_user_group')])]"
             />
     <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = document.show_lock and document.is_locked</field>
+    <field
+                name="additional_python_code"
+            >result = document.show_lock and document.is_locked</field>
 </record>
 <record id="policy_template_mrp_production_cancel" model="policy.template_detail">
     <field name="template_id" ref="policy_template_mrp_production" />
@@ -208,7 +219,7 @@
     <field name="restrict_state" eval="1" />
     <field
                 name="state_ids"
-                search="[('field_id.model_id.model','=','mrp.production'),('value','not in',['done', 'cancel'])]"
+                search="[('field_id.model_id.model','=','mrp.production'),('value','in',['confirmed', 'progress', 'to_close', 'done'])]"
             />
     <field name="restrict_user" eval="1" />
     <field name="computation_method">use_group</field>
@@ -217,7 +228,34 @@
                 eval="[(6,0,[ref('ssi_mrp_production.manufacture_order_validator_group')])]"
             />
     <field name="restrict_additional" eval="1" />
-    <field name="additional_python_code">result = document.id</field>
+    <field name="additional_python_code">result = False
+if not document.confirm_cancel:
+    result = True</field>
+</record>
+<record
+            id="policy_template_mrp_production_cancel_confirm"
+            model="policy.template_detail"
+        >
+    <field name="template_id" ref="policy_template_mrp_production" />
+    <field
+                name="field_id"
+                search="[('model_id.model','=','mrp.production'),('name','=','cancel_confirm_ok')]"
+            />
+    <field name="restrict_state" eval="1" />
+    <field
+                name="state_ids"
+                search="[('field_id.model_id.model','=','mrp.production'),('value','in',['confirmed', 'progress', 'to_close', 'done'])]"
+            />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field
+                name="group_ids"
+                eval="[(6,0,[ref('ssi_mrp_production.manufacture_order_validator_group')])]"
+            />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+if document.confirm_cancel:
+    result = True</field>
 </record>
 <record id="policy_template_mrp_production_unbulid" model="policy.template_detail">
     <field name="template_id" ref="policy_template_mrp_production" />
