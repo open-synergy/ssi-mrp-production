@@ -87,9 +87,9 @@
                 <page name="valuation" string="Valuation">
                     <group>
                         <group>
-                            <field name="stock_valuation_id"/>
-                            <field name="unit_cost"/>
-                            <field name="value"/>
+                            <field name="stock_valuation_id" />
+                            <field name="unit_cost" />
+                            <field name="value" />
                         </group>
                     </group>
                 </page>
