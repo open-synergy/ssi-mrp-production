@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "MRP Production",
-    "version": "14.0.2.0.0",
+    "version": "14.0.2.1.0",
     "category": "Manufacturing/Manufacturing",
     "author": "OpenSynergy Indonesia, PT. Simetri Sinergi Indonesia",
     "license": "AGPL-3",
